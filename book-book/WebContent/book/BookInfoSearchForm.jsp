@@ -32,16 +32,26 @@
 		</div>
 			
 		<% 
-			if(request.getAttribute("search")!=null){ 
-				%>
-				<%=(String)request.getAttribute("search") %></td>
-							
-				<%
-			}
-		%>
+		int count=0;
 		
-			
-		
+			if(request.getAttribute("count")!=null&&(String)request.getAttribute("search")!=null){ 
+				String count1=(String)request.getAttribute("count");
+				count=Integer.parseInt(count1);
+				%><table>
+				<% String[][] searchList=new String[count+1][6];
+				searchList=(String[][])request.getAttribute("search"); 
+				for(int i=0; i<searchList.length;i++){
+					%> <tr><%
+					for(int j=0;j<searchList[i].length;j++){
+						%> <td><%= searchList[i][j] %> </td> <%
+						}
+						%> </tr><%
+				}
+				%></table><%
+			}else if(count==0&&request.getAttribute("search")!=null){
+					%><%= request.getAttribute("search") %><%
+			} %>
+					
 	</div>
 </body>
 </html>

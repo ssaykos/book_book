@@ -1,27 +1,42 @@
 package com.homepage.book.impl;
 
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Vector;
+
 import com.homepage.book.bean.BookBean;
 import com.hompage.book.service.ServiceCreate;
 
 
+
 public class ServiceCreateImpl implements ServiceCreate{
-	BookBean vo = new BookBean();
-
-	@Override
-	public void bookAdditionFull() {
-		// TODO Auto-generated method stub
-		
+	
+	
+	
+	
+	
+	Vector<BookBean> vector = new Vector<BookBean>();
+	//더미값을 검색하기 위한 벡터 선언
+	Set<String> set = new HashSet<String>();
+	public void dumyAddition() {
+		Date a = new Date();//더미값에 들어갈 출판일 날짜
+		BookBean[] bean = { new BookBean("사람은무엇으로사는가?", "레브니콜라예비치톨스토이", "더클래식", "소설/세계소설/러시아", a , "0102040021"),
+							new BookBean("사람은무엇으로사는가?", "레브니콜라예비치톨스토이", "더클래식", "소설/세계소설/러시아", a , "0102040022"),
+							new BookBean("부활", "레프니콜라예비치톨스토이", "더클래식", "소설/세계소설/러시아", a , "0102040011"),
+							new BookBean("등대지기", "조창인", "밝은세상", "소설/테마소설/로맨스소설", a , "0104010022"),
+							new BookBean("호질", "박지원", "자필", "소설/고전소설/한국고전", a , "0101010011"),
+							new BookBean("양반전", "박지원", "자필", "소설/고전소설/한국고전", a , "0101010021") };//더미값
+		for (int i = 0; i < bean.length; i++) {
+			vector.add(bean[i]);
+		}
 	}
+	
 
 	@Override
-	public void bookAdditionSmall() {
+	public String bookSerialNumberGenerator(String bookCategory, String bTitle, String author) {//aa/bb/cc
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String bookSerialNumberGenerator(String bookCategory) {//aa/bb/cc
-		// TODO Auto-generated method stub
+		dumyAddition();	//목록을 검색 조건으로 걸르기전 모든 더미값 벡터에 넣기
 		
 		String bookSerialNumber="";
 		String firstCategory=bookCategory.substring(0,bookCategory.indexOf("/"));//문자열의 0번째부터 /가 있는 곳의 문자열까지 잘라서 넣는다.//aa
@@ -37,10 +52,10 @@ public class ServiceCreateImpl implements ServiceCreate{
 		bookSerialNumber+=SecondSerialNumberGenerator(secondCategory);
 		bookSerialNumber+=ThirdSerialNumberGenerator(thirdCategory);
 		//이 뒤에 모든 데이터들의 넘버를 같은자리에 같은데이터 값을 가진것들을 검색하면서 카운트를 올리고 +1 해서  += 를 시켜준후 동일 책
-		/*bookSerialNumber+=FourthSerialNumberGenerator(vo.getbGroup());//맵 해시맵 객체를 생성해서 bookVO를 넣게 되면 파라미터를 한번 더 감싸야 하는 부분?
+		bookSerialNumber+=FourthSerialNumberGenerator(bookCategory,bTitle,author);//
 		//책분류의 값이 동일한 것들을 쭉 비교하면서 동일한 만큼 카운트를 올리고 +1시킨다음 세자릿수 맞춰서 
-		bookSerialNumber+=FifthSerialNumberGenerator(vo.getbTitle(), vo.getAuthor());//맵 해시맵 객체를 생성해서 bookVO를 넣게 되면 파라미터를 한번 더 감싸야 하는 부분?
-		*/
+		bookSerialNumber+=FifthSerialNumberGenerator(bTitle, author);//맵 해시맵 객체를 생성해서 bookVO를 넣게 되면 파라미터를 한번 더 감싸야 하는 부분?
+		
 		return bookSerialNumber;
 	}
 
@@ -251,11 +266,28 @@ public class ServiceCreateImpl implements ServiceCreate{
 	}
 
 	@Override
-	public String FourthSerialNumberGenerator(String bookCategory) {
+	public String FourthSerialNumberGenerator(String bookCategory, String bookTitle, String bookWriter) {
 		// TODO Auto-generated method stub
 		String fourthSerialNumber="";
-		
-		return fourthSerialNumber;
+		int count=0;
+		String b=bookTitle+bookWriter;//넘어온 책제목과 저자명을 합치고
+		for (int i = 0; i < vector.size(); i++) {
+			String a=vector.elementAt(i).getbTitle()+vector.elementAt(i).getAuthor();//더미값 마다 책제목과 저자명을 합친후
+			if(bookCategory.equals(vector.elementAt(i).getbGroup())&&a.equals(b)){//두가지가 같으면
+				return vector.elementAt(i).getSerialNo().substring(vector.elementAt(i).getSerialNo().length()-4, vector.elementAt(i).getSerialNo().length()-1);//벡터에서 더미 값의 시리얼 넘버 중 4번째파트에 해당하는 부위를 잘라 리턴한다. 
+			}else{
+				count++;//같은것이 없으면 카운트를 올리고
+			}
+		}
+		//중복 되지 않는 크기만큼 카운트를 세고
+		count++;//한번 더 추가 해준 후
+		fourthSerialNumber=""+count;// 해당 카운트를 스트링으로 바꾸고
+		if(fourthSerialNumber.length()==1){//한자릿수라면 00을 더해주고
+			fourthSerialNumber="00"+fourthSerialNumber;
+		}else if(fourthSerialNumber.length()==2){//두자릿수라면 0을 더해줘서
+			fourthSerialNumber="0"+fourthSerialNumber;
+		}
+		return fourthSerialNumber;//해당 4번째 파트의 시리얼 넘버를 리턴한다.
 	}
 
 	@Override
@@ -263,8 +295,18 @@ public class ServiceCreateImpl implements ServiceCreate{
 			String bookWriter) {
 		// TODO Auto-generated method stub
 		String fifthSerialNumber="";
-		
-		return fifthSerialNumber;
+		int count=0;
+		String b=bookTitle+bookWriter;//책제목과 저자명을 합친후
+		for (int i = 0; i < vector.size(); i++) {
+			String a=vector.elementAt(i).getbTitle()+vector.elementAt(i).getAuthor();//벡터 요소마다의 책제목과 저자명을 합치면서
+			if (b.equals(a)) {//같은것이 있으면
+				count++;//카운트를 올리고
+			}
+		}
+		count++;//해당책의 카운트룰 추가한후
+		fifthSerialNumber=""+count;// 스트링으로 만들어서
+				
+		return fifthSerialNumber;//넘겨준다.
 	}
 
 

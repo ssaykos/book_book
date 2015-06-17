@@ -20,6 +20,7 @@ public class BookBean {
 	
 	public BookBean() {
 		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public BookBean(String bookTitle, String bookWriter) {
@@ -52,6 +53,19 @@ public class BookBean {
 		this.pressDate=bookMakeDate;
 		this.serialNo=serialNumber;
 		this.entrada=new Date();
+		this.exist=true;//입고를 하면서 입고일이 들어왓는데..있나 없나 확인 하는 곳이 비어있으면 웃기다..
+	}
+	public BookBean(String bookTitle, String bookWriter, String bookCompany, String bookCategory, Date bookMakeDate, String serialNumber, int rentCount) {
+		// TODO Auto-generated constructor stub
+		this.bTitle=bookTitle;
+		this.author=bookWriter;
+		this.publisher=bookCompany;
+		this.bGroup=bookCategory;
+		this.pressDate=bookMakeDate;
+		this.serialNo=serialNumber;
+		this.entrada=new Date();
+		this.exist=true;//입고를 하면서 입고일이 들어왓는데..있나 없나 확인 하는 곳이 비어있으면 웃기다..
+		this.rentCount=rentCount;
 	}
 	
 	public String getbTitle() {
