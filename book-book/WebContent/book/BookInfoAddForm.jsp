@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div>
-		<form action="<%= request.getContextPath() %>/lib/BookInfoAdd.lib">
+		<form action="<%= request.getContextPath() %>/book/BookInfoAdd.soso">
 			<table>
 				<tr >
 					<td>책제목<!-- (string) --></td>

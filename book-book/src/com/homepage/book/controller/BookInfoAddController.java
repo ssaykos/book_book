@@ -20,7 +20,7 @@ import com.hompage.book.service.ServiceCreate;
 /**
  * Servlet implementation class BookInfoAddController
  */
-@WebServlet("/lib/BookInfoAdd.lib")
+@WebServlet("/book/BookInfoAdd.soso")
 public class BookInfoAddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,12 +32,7 @@ public class BookInfoAddController extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-//		Enumeration<String> params = request.getParameterNames();
-//		
-//		while(params.hasMoreElements()){
-//			String paramName = params.nextElement();
-//			System.out.println("param : " + paramName + ", value : " + request.getParameter(paramName));
-//		}
+
 		Date date=new Date();
 		SimpleDateFormat Sdate = new SimpleDateFormat("yyyy년 MM월 dd일 E요일 a hh시mm분ss초");
 		
@@ -60,7 +55,7 @@ public class BookInfoAddController extends HttpServlet {
 		request.setAttribute("입고일", ""+Sdate.format(date));
 		
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/book/BookInfoAdd.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/book/BookInfoAdd.jsp");
 		dispatcher.forward(request, response);
 	}
 
