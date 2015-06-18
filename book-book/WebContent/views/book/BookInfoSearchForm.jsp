@@ -5,14 +5,16 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>책정보 검색 페이지</title>
+	<style>
+		@import url("<%=request.getContextPath()%>/css/book/Book.css");
+	</style>
 </head>
 <body>
+	<jsp:include page="Aside.jsp"></jsp:include>
+	<article class="book">
 	<div>
 		<div>
-		
-		
 			<form action="<%= request.getContextPath() %>/book/bookInfoSearch.soso"> 
-			
 				<table>
 					<tr>
 						<td>
@@ -34,11 +36,10 @@
 		<% 
 		int count=0;
 		
-			if(request.getAttribute("count")!=null&&(String)request.getAttribute("search")!=null){ 
-				String count1=(String)request.getAttribute("count");
-				count=Integer.parseInt(count1);
+			if(request.getAttribute("count")!=null&&request.getAttribute("search")!=null){ 
+				count=Integer.parseInt((String)request.getAttribute("count"));
 				%><table>
-				<% String[][] searchList=new String[count+1][6];
+				<% String[][] searchList = new String[count+1][6];
 				searchList=(String[][])request.getAttribute("search"); 
 				for(int i=0; i<searchList.length;i++){
 					%> <tr><%
@@ -53,5 +54,6 @@
 			} %>
 					
 	</div>
+	</article>
 </body>
 </html>

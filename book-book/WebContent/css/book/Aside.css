@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+.aside{
+	display:inline-block;
+	width: 20%;
+	min-height: 150px ;
+	vertical-align: top;
+}

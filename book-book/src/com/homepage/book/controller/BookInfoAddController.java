@@ -12,8 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 import com.homepage.book.impl.ServiceCreateImpl;
 import com.hompage.book.service.ServiceCreate;
+
+
 
 /**
  * Servlet implementation class BookInfoAddController
@@ -58,7 +62,7 @@ public class BookInfoAddController extends HttpServlet {
 		request.setAttribute("입고일", ""+Sdate.format(date));
 		
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/book/BookInfoAdd.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/book/BookInfoAdd.jsp");
 		dispatcher.forward(request, response);
 	}
 

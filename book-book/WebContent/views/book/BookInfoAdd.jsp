@@ -5,10 +5,15 @@
 <head>
 	<meta charset="UTF-8" />
 	<title> 책 정보 입력 확인 페이지</title>
+	<style>
+		@import url("<%=request.getContextPath()%>/css/book/Book.css");
+	</style>
 </head>
 <body>
+<jsp:include page="Aside.jsp"></jsp:include>
+	<article class="book">
 	<div>
-		<form action="<%= request.getContextPath() %>/lib/BookInfoAddition.lib">
+		<form action="<%= request.getContextPath() %>/lib/BookInfoAddition.soso">
 			<table>
 				<tr>
 					<td>고유식별번호</td>
@@ -53,6 +58,6 @@
 			</table>
 		</form>
 	</div>
-	
+	</article>
 </body>
 </html>

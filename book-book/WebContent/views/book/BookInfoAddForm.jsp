@@ -8,9 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>책정보 입력페이지</title>
+<style>
+		@import url("<%=request.getContextPath()%>/css/book/Book.css");
+	</style>
 
 </head>
 <body>
+<jsp:include page="Aside.jsp"></jsp:include>
+	<article class="book">
 	<div>
 		<form action="<%= request.getContextPath() %>/book/BookInfoAdd.soso">
 			<table>
@@ -131,5 +136,6 @@
 			</table>
 		</form>			
 	</div>
+	</article>
 </body>
 </html>

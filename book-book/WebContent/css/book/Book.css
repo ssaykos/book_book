@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+.book{
+	display:inline-block;
+	width: 75%; 
+	text-align: center;
+}
+.center{
+	text-align: center;
+}
+.rightSort{
+	text-align: right;
+}
