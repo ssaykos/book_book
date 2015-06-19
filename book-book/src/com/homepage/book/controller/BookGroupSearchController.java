@@ -69,15 +69,19 @@ public class BookGroupSearchController extends HttpServlet {
 			sResult[0][3]="출판사";
 			sResult[0][4]="책식별번호(이거 없애고 하나로 합쳐야 할듯.)";
 			sResult[0][5]="인기도(빌림수) 미구현(이걸로목록정렬)";
+			int countlist=0;
 			for (int i = 0; i < vector.size(); i++) {
-				if(vector.elementAt(i).getbGroup().equals(bGroup)){
-					for (int j = 1; j < sResult.length; j++) {
-						sResult[j][0]=""+i;
-						sResult[j][1]=vector.elementAt(i).getbTitle();
-						sResult[j][2]=vector.elementAt(i).getAuthor();
-						sResult[j][3]=vector.elementAt(i).getPublisher();
-						sResult[j][4]=vector.elementAt(i).getSerialNo();
-						sResult[j][5]="인기도(빌림수) 미구현(이걸로목록정렬)";
+				for (int j = 1; j < sResult.length; j++) {
+					if(vector.elementAt(i).getbGroup().equals(bGroup)){
+						countlist++;
+						sResult[countlist][0]=""+countlist;
+						sResult[countlist][1]=vector.elementAt(i).getbTitle();
+						sResult[countlist][2]=vector.elementAt(i).getAuthor();
+						sResult[countlist][3]=vector.elementAt(i).getPublisher();
+						sResult[countlist][4]=vector.elementAt(i).getSerialNo();
+						sResult[countlist][5]="인기도(빌림수) 미구현(이걸로목록정렬)";
+						break;
+						
 					}
 				}
 			}

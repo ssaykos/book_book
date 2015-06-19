@@ -7,7 +7,7 @@
 	<title>카테고리별 검색</title>
 	<style>
 		@import url("<%=request.getContextPath()%>/css/book/Book.css");
-	</style>
+	</style>	
 </head>
 <body>
 	<jsp:include page="Aside.jsp"></jsp:include>
