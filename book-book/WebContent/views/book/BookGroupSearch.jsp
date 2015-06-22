@@ -10,9 +10,11 @@
 	</style>	
 </head>
 <body>
+<div><jsp:include page="../main/header.jsp"/></div>
+<br /><br />
 	<jsp:include page="Aside.jsp"></jsp:include>
 	<article class="book">
-	<form action="<%= request.getContextPath() %>/book/BookGroupSearch.soso">
+	<form action="<%= request.getContextPath() %>/book/BookGroupSearch.soso" style="min-height: 600px">
 		<table>
 			<tr>
 				<td>책분류<!-- (string) --></td>
@@ -96,8 +98,8 @@
 				<td><input type="submit" value="검색"></td>
 			</tr>
 		</table>
-	</form>
-	<div>
+		<br /><br /><br />
+		<div>
 		<%
 			int count = 0;
 
@@ -110,11 +112,11 @@
 					searchList = (String[][]) request.getAttribute("search");
 					for (int i = 0; i < searchList.length; i++) {
 			%>
-			<tr>
+			<tr class="trSize<% if(i==0){%>1<%}else{%>2<%} %>">
 				<%
 					for (int j = 0; j < searchList[i].length; j++) {
 				%>
-				<td><%=searchList[i][j]%></td>
+				<td class="tdStyle<% if(j==0){%>1<%}else{%>2<%} %>"><%=searchList[i][j]%></td>
 				<%
 					}
 				%>
@@ -129,6 +131,9 @@
 		<%
 			} %>
 	</div>
+	</form>
+	
 	</article>
+	<div><jsp:include page="../main/footer.jsp"/></div>	
 </body>
 </html>
