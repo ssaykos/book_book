@@ -1,6 +1,5 @@
 package com.homepage.book.bean;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookBean {
@@ -10,6 +9,7 @@ public class BookBean {
 	private String bGroup;//책분류
 	private String serialNo;//책식별번호
 	private String rentID;//해당책을 누군가 빌려갔다면 누가 빌려갔는지 식별하기 위한 id저장 공간
+	private String bPicture;//해당 책표지사진
 	private boolean exist;//책이 도서실에 있나 없나
 	private boolean isRent;//책 빌리기 신청이 들어왓나 안들어왓나
 	private boolean isDelay;//책 빌려가고 연장을 햇나 안햇나.
@@ -19,25 +19,21 @@ public class BookBean {
 	private Date entrada;//입고일
 		
 	public BookBean() {
-		// TODO Auto-generated constructor stub
 		
 	}
 	
 	public BookBean(String bookTitle, String bookWriter) {
-		// TODO Auto-generated constructor stub
 		this.bTitle=bookTitle;
 		this.author=bookWriter;
 	}
 	
 	public BookBean(String bookTitle, String bookWriter, String bookCompany) {
-		// TODO Auto-generated constructor stub
 		this.bTitle=bookTitle;
 		this.author=bookWriter;
 		this.publisher=bookCompany;
 	}
 	
 	public BookBean(String bookTitle, String bookWriter, String bookCompany, String bookCategory) {
-		// TODO Auto-generated constructor stub
 		this.bTitle=bookTitle;
 		this.author=bookWriter;
 		this.publisher=bookCompany;
@@ -45,7 +41,6 @@ public class BookBean {
 	}
 	
 	public BookBean(String bookTitle, String bookWriter, String bookCompany, String bookCategory, Date bookMakeDate, String serialNumber) {
-		// TODO Auto-generated constructor stub
 		this.bTitle=bookTitle; //도서 입고를 위한 생성자.
 		this.author=bookWriter;
 		this.publisher=bookCompany;
@@ -56,7 +51,6 @@ public class BookBean {
 		this.exist=true;//입고를 하면서 입고일이 들어왓는데..있나 없나 확인 하는 곳이 비어있으면 웃기다..
 	}
 	public BookBean(String bookTitle, String bookWriter, String bookCompany, String bookCategory, Date bookMakeDate, String serialNumber, int rentCount) {
-		// TODO Auto-generated constructor stub
 		this.bTitle=bookTitle;//도서 통합검색을 위한 더미값을 넣기 위한 생성자
 		this.author=bookWriter;
 		this.publisher=bookCompany;
@@ -67,7 +61,14 @@ public class BookBean {
 		this.exist=true;//입고를 하면서 입고일이 들어왓는데..있나 없나 확인 하는 곳이 비어있으면 웃기다..
 		this.rentCount=rentCount;
 	}
-	
+
+	public String getbPicture() {
+		return bPicture;
+	}
+
+	public void setbPicture(String bPicture) {
+		this.bPicture = bPicture;
+	}
 	
 	public String getbTitle() {
 		return bTitle;

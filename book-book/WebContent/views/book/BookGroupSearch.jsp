@@ -10,7 +10,6 @@
 	</style>	
 </head>
 <body>
-<div><jsp:include page="../main/header.jsp"/></div>
 <br /><br />
 	<jsp:include page="Aside.jsp"></jsp:include>
 	<article class="book">
@@ -134,6 +133,5 @@
 	</form>
 	
 	</article>
-	<div><jsp:include page="../main/footer.jsp"/></div>	
 </body>
 </html>
