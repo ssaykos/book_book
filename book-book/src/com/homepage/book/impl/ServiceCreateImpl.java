@@ -5,10 +5,16 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Vector;
 
-import com.homepage.book.bean.BookBean;
-import com.hompage.book.service.ServiceCreate;
+import com.homepage.book.beans.BookBean;
+import com.homepage.book.service.ServiceCreate;
 
-
+/*
+ * 생성 날짜  ?? 까먹..
+ * 수정 날짜2015-07-14
+ * 김진선
+ * 까먹날짜 Story - 씨리얼 넘버 생성
+ * 수정날짜 Story - 분류값을 시리얼 넘버로 변경메서드
+ */
 
 public class ServiceCreateImpl implements ServiceCreate{
 	
@@ -19,7 +25,7 @@ public class ServiceCreateImpl implements ServiceCreate{
 	Vector<BookBean> vector = new Vector<BookBean>();
 	//더미값을 검색하기 위한 벡터 선언
 	Set<String> set = new HashSet<String>();
-	public void dumyAddition() {
+	/*public void dumyAddition() {
 		Date a = new Date();//더미값에 들어갈 출판일 날짜
 		BookBean[] bean = { new BookBean("사람은무엇으로사는가?", "레브니콜라예비치톨스토이", "더클래식", "소설/세계소설/러시아", a , "0102040021"),
 							new BookBean("사람은무엇으로사는가?", "레브니콜라예비치톨스토이", "더클래식", "소설/세계소설/러시아", a , "0102040022"),
@@ -30,13 +36,13 @@ public class ServiceCreateImpl implements ServiceCreate{
 		for (int i = 0; i < bean.length; i++) {
 			vector.add(bean[i]);
 		}
-	}
+	}*/
 	
 
 	@Override
 	public String bookSerialNumberGenerator(String bookCategory, String bTitle, String author) {//aa/bb/cc
 		// TODO Auto-generated method stub
-		dumyAddition();	//목록을 검색 조건으로 걸르기전 모든 더미값 벡터에 넣기
+		//dumyAddition();	//목록을 검색 조건으로 걸르기전 모든 더미값 벡터에 넣기//디비와 연결후 주석 처리
 		
 		String bookSerialNumber="";
 		String firstCategory=bookCategory.substring(0,bookCategory.indexOf("/"));//문자열의 0번째부터 /가 있는 곳의 문자열까지 잘라서 넣는다.//aa
@@ -307,6 +313,27 @@ public class ServiceCreateImpl implements ServiceCreate{
 		fifthSerialNumber=""+count;// 스트링으로 만들어서
 				
 		return fifthSerialNumber;//넘겨준다.
+	}
+
+
+	@Override
+	public String tobGroupBybGroupCodeFomater(String bookCategory) {
+		String bGroupCode="";
+		
+		String firstCategory=bookCategory.substring(0,bookCategory.indexOf("/"));//문자열의 0번째부터 /가 있는 곳의 문자열까지 잘라서 넣는다.//aa
+		String tempSecondCategory=bookCategory.substring(bookCategory.indexOf("/")+1);//bb/cc
+		String secondCategory="";//값을 넣기 전 초기화
+		String thirdCategory="";//값을 넣기 전 초기화
+		secondCategory=tempSecondCategory.contains("/") ? tempSecondCategory.substring(0,tempSecondCategory.indexOf("/")) : tempSecondCategory;
+		//첫번째 분류 즉 대분류와 "/"표시를 삭제한 값을두번째 tempSecondCategory에  넣은후 tempsecondCategory에  "/" 가 없으면 SecondCategory에 tempSecondCategory를 넣고 "/"가있으면 tempSecondCategory열중 "/" 앞의 문자열을 넣는다.
+		thirdCategory=tempSecondCategory.contains("/") ? tempSecondCategory.substring(tempSecondCategory.indexOf("/")+1,tempSecondCategory.length()) : "";
+		//첫번째 분류 즉 대분류와 "/"표시를 삭제한 값을두번째 tempSecondCategory에  넣은후 tempSecondCategory에 "/" 가 없으면 ThirdCategory에 널값을 넣고  "/"가있으면 tempSecondCategory열중 "/"+1부터 그 뒤의 문자열을 넣는다.
+		
+		bGroupCode+=FirstSerialNumberGenerator(firstCategory);
+		bGroupCode+=SecondSerialNumberGenerator(secondCategory);
+		bGroupCode+=ThirdSerialNumberGenerator(thirdCategory);
+		
+		return bGroupCode;
 	}
 
 

@@ -1,22 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="context" value="<%=request.getContextPath() %>"></c:set>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
 	<title>연체도서검색페이지</title>
 	<style>
-		@import url("<%=request.getContextPath()%>/css/book/Book.css");
+		@import url("${context}/css/book/Book.css");
 	</style>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
+<div><jsp:include page="../main/header.jsp"/></div>
+<br /><br />
 	<jsp:include page="Aside.jsp"></jsp:include>
 	<article class="book">
 
 
 	<div class="center">
 		<div class="center">
-			<form action="<%= request.getContextPath() %>/book/bookOverdueSearch.soso"> 
+		해당 페이지는 열자마자 연체일 검색에 따른 목록이 나와야 합니다. 현재 서블릿만으로는 구현 불가페이지 입니다. 
+		<br /><br />
+			<form action="<%= request.getContextPath() %>/book/bookOverdueSearch.soso" style="min-height: 600px"> 
 				<table>
 					<tr>
 						<td>
@@ -32,10 +40,8 @@
 						<td><input type="submit" value="검색"></td>
 					</tr>
 				</table>
-			</form>
-			해당 페이지는 열자마자 연체일 검색에 따른 목록이 나와야 합니다. 현재 서블릿만으로는 구현 불가페이지 입니다. 
-		</div>
-		<div>
+				<br /><br /><br />
+				<div>
 		<table class="rightSort">
 			<tr>
 				<td>no.</td>
@@ -96,6 +102,10 @@
 			
 		</table>
 		</div>	
+			</form>
+			
+		</div>
+		
 		<%-- <% 
 		int count=0;
 		
@@ -118,5 +128,6 @@
 					
 	</div>
 	</article>
+	<div><jsp:include page="../main/footer.jsp"/></div>	
 </body>
 </html>

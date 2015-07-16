@@ -24,7 +24,6 @@ public class AsideController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		RequestDispatcher dispatcher=null;
 		switch (request.getServletPath()) {
 		case "/book/Aside/BookInfoSearch.soso":

@@ -1,4 +1,4 @@
-package com.homepage.book.bean;
+package com.homepage.book.beans;
 
 import java.util.Date;
 
@@ -7,6 +7,9 @@ public class BookBean {
 	private String author;//책저자
 	private String publisher;//출판사
 	private String bGroup;//책분류
+	private String bGroupCode;//책분류 코드
+	private String bKDCCode;//한국도서분류 코드
+	private String bKDC;//한국 도서분류기호
 	private String serialNo;//책식별번호
 	private String rentID;//해당책을 누군가 빌려갔다면 누가 빌려갔는지 식별하기 위한 id저장 공간
 	private String bPicture;//해당 책표지사진
@@ -14,11 +17,11 @@ public class BookBean {
 	private boolean isRent;//책 빌리기 신청이 들어왓나 안들어왓나
 	private boolean isDelay;//책 빌려가고 연장을 햇나 안햇나.
 	private int rentCount;//책 빌려간 횟수
-	private Date pressDate;//책 출판일
-	private Date rentDate;//책 대여일//대여일들의 누적값에 대한 수정 필요
-	private Date entrada;//입고일
-		
-	public BookBean() {
+	private String pressDate;//책 출판일
+	private String rentDate;//책 대여일//대여일들의 누적값에 대한 수정 필요
+	private String entrada;//입고일
+	//데이터 타입 일자 스트링으로 바꾸면서 뜨는 에러들 변경 시간 부족으로 생성자 주석 처리	
+	/*public BookBean() {
 		
 	}
 	
@@ -60,6 +63,13 @@ public class BookBean {
 		this.entrada=new Date();
 		this.exist=true;//입고를 하면서 입고일이 들어왓는데..있나 없나 확인 하는 곳이 비어있으면 웃기다..
 		this.rentCount=rentCount;
+	}*/
+	public String getbKDC() {
+		return bKDC;
+	}
+
+	public void setbKDC(String bKDC) {
+		this.bKDC = bKDC;
 	}
 
 	public String getbPicture() {
@@ -170,34 +180,50 @@ public class BookBean {
 	}
 
 	
-	public Date getPressDate() {
+	public String getPressDate() {
 		return pressDate;
 	}
 
 	
-	public void setPressDate(Date pressDate) {
+	public void setPressDate(String pressDate) {
 		this.pressDate = pressDate;
 	}
 
 	
-	public Date getRentDate() {
+	public String getRentDate() {
 		return rentDate;
 	}
 
 	
-	public void setRentDate(Date rentDate) {
+	public void setRentDate(String rentDate) {
 		this.rentDate = rentDate;
 	}
 
 	
-	public Date getEntrada() {
+	public String getEntrada() {
 		return entrada;
 	}
-
 	
-	public void setEntrada(Date entrada) {
+	public void setEntrada(String entrada) {
 		this.entrada = entrada;
 	}
+
+	public String getbGroupCode() {
+		return bGroupCode;
+	}
+
+	public void setbGroupCode(String bGroupCode) {
+		this.bGroupCode = bGroupCode;
+	}
+
+	public String getbKDCCode() {
+		return bKDCCode;
+	}
+
+	public void setbKDCCode(String bKDCCode) {
+		this.bKDCCode = bKDCCode;
+	}
+
 
 
 	

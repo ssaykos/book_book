@@ -1,19 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="context" value="<%=request.getContextPath() %>"></c:set>
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
 	<title>카테고리별 검색</title>
 	<style>
-		@import url("<%=request.getContextPath()%>/css/book/Book.css");
+		@import url("${context}/css/book/Book.css");
 	</style>	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
+<div><jsp:include page="../main/header.jsp"/></div>
 <br /><br />
 	<jsp:include page="Aside.jsp"></jsp:include>
 	<article class="book">
-	<form action="<%= request.getContextPath() %>/book/BookGroupSearch.soso" style="min-height: 600px">
+	<form action="${context}/book/BookGroupSearch.soso" style="min-height: 600px">
 		<table>
 			<tr>
 				<td>책분류<!-- (string) --></td>
@@ -41,7 +46,8 @@
 						<option value="잡지">잡 지</option>
 						<option value="default">default</option>
 				</select>
-					<button type="button">선택</button> <select name="2차분류" size="1">
+					<button type="button" id="1thCategory" onclick="retrun BookGroupSearch.1th()">선택</button> 
+					<select name="2차분류" size="1">
 						<option value="default">---2차 분류---</option>
 						<option value="default">---소 설---</option>
 						<option value="고전소설">고전소설</option>
@@ -72,7 +78,7 @@
 						<option value="나라별수필">나라별수필</option>
 						<option value="default">default</option>
 				</select>
-					<button type="button">선택</button> <select name="3차분류" size="1">
+					<button type="button" id="2thCategory">선택</button> <select name="3차분류" size="1">
 						<option value="default">---3차 분류---</option>
 						<option value="default">--고전소설--</option>
 						<option value="한국고전">한국고전</option>
@@ -100,6 +106,31 @@
 		<br /><br /><br />
 		<div>
 		<%
+		if(request.getAttribute("list")==null){
+			%><%
+		}else{
+		%>
+		<table>
+		<tr style="align:center;border: 1px solid black;">
+            <th style="width: 20%">이미지</th>
+            <th style="width: 15%">검색내용</th>
+            <th style="width: 45%">부가정보</th>
+            <th style="width: 10%">인기도(빌린횟수)</th>
+        </tr>
+		<c:forEach var="searchlist" items="${list}" varStatus="status"> 
+			<tr>
+				<td><img src="${context}/images/book/${searchlist.bPicture}"></td>
+				<td>책제목-${searchlist.bTitle}<br>지은이-${searchlist.author}</td>
+				<td>출판사-${searchlist.publisher}<br>출판일-${searchlist.pressDate}<br>일련번호-${searchlist.serialNo}<br>KDC-${searchlist.bKDCCode}</td>
+				<td>${searchlist.rentCount}</td>
+			</tr>
+		</c:forEach>
+		</table>
+		<%
+		}
+		%>
+	<!-- 아래는 jstl쓰기 전꺼 -->
+		<%-- <%
 			int count = 0;
 
 			if (request.getAttribute("count") != null
@@ -128,10 +159,17 @@
 			} else if (count == 0 && request.getAttribute("search") != null) {
 		%><%=request.getAttribute("search")%>
 		<%
-			} %>
+			} %> --%>
 	</div>
 	</form>
 	
 	</article>
+	<div><jsp:include page="../main/footer.jsp"/></div>	
+	<%-- <script type="text/javascript" src="${context}/js/book/BookGroupSearch.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('#1thCategory').click(function() {category.1th();	});
+		$('#2thCategory').click(function() {category.2th();	});
+	</script> --%>
 </body>
 </html>

@@ -2,8 +2,6 @@ package com.homepage.book.controller;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.homepage.book.bean.BookBean;
+import com.homepage.book.beans.BookBean;
+
+//통합 검색 페이지에 대한 페이지
 
 
 

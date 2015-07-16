@@ -1,5 +1,11 @@
-package com.hompage.book.service;
-
+package com.homepage.book.service;
+/*
+ * 생성 날짜  ?? 까먹..
+ * 수정 날짜2015-07-14
+ * 김진선
+ * 까먹날짜 Story - 씨리얼 넘버 생성
+ * 수정날짜 Story - 분류값을 시리얼 넘버로 변경메서드
+ */
 public interface ServiceCreate {
 	public String bookSerialNumberGenerator(String bookCategory, String bTitle, String author);// 책 식별넘버 생성기
 	public String FirstSerialNumberGenerator(String bookCategory);// 책 식별넘버 생성을 위한 첫분류 즉 대분류로 십억자리와 억자리수를 결정하는 메서드
@@ -7,4 +13,5 @@ public interface ServiceCreate {
 	public String ThirdSerialNumberGenerator(String bookCategory);//책 식별넘버 생성을 위한 세번째 분류 즉 소분류로 십만자리와 만자리수를 결정하는 메서드
 	public String FourthSerialNumberGenerator(String bookCategory, String bookTitle, String bookWriter);//같은 분류의 책 안에 몇권의 책이 있나 세본후 +1해서 천자리와 백자리 십자리 수를 결정하는 메서드
 	public String FifthSerialNumberGenerator(String bookTitle,String bookWriter);//같은 분류의 책 안에 같은 이름 같은 저자의 책이 몇권있나 세본후 마지막 일의 자리수를 결정하는 메서드
+	public String tobGroupBybGroupCodeFomater(String bookCategory);//카테고리 검색을 위해 책분류 값 넘어 온것을 조인등의 검색을 위한 책분류 코드로 변경 하는 메서드
 }

@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="context" value="<%=request.getContextPath() %>"></c:set>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,11 +11,14 @@
 	<style>
 		@import url("<%=request.getContextPath()%>/css/book/Book.css");
 	</style>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
+<div><jsp:include page="../main/header.jsp"/></div>
+<br /><br />
 	<jsp:include page="Aside.jsp"></jsp:include>
 	<article class="book">
-	<div>
+	<div style="min-height: 600px">
 		<div>
 			<form action="<%= request.getContextPath() %>/book/bookInfoSearch.soso"> 
 				<table>
@@ -30,6 +36,7 @@
 					</tr>
 				</table>
 			</form>
+			<br /><br /><br />
 			
 		</div>
 			
@@ -55,5 +62,6 @@
 					
 	</div>
 	</article>
+	<div><jsp:include page="../main/footer.jsp"/></div>	
 </body>
 </html>
